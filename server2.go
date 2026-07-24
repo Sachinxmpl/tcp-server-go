@@ -21,11 +21,11 @@ type Server2 struct {
 
 func (s *Server2) ListenAndServe() error {
 	ln, err := net.Listen("tcp", ":8080")
-	log.Printf("Server2 started on %s", ln.Addr().String())
 
 	if err != nil {
 		return err
 	}
+	log.Printf("Server2 started on %s", ln.Addr().String())
 	s.ln = ln
 
 	for {

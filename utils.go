@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"log"
 	"net"
+	"strings"
 	"sync"
 )
 
@@ -29,7 +30,7 @@ func handleConnection(conn net.Conn, wg *sync.WaitGroup) {
 		msg := string(buf[:n])
 		log.Printf("[%s] received: %q", addr, msg)
 
-		if msg == "quit\n" {
+		if strings.TrimSpace(msg) == "quit" {
 			conn.Write([]byte("Goodbyte \n"))
 			log.Printf("[%s] disconnected", addr)
 			return
